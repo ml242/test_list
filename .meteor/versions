@@ -48,8 +48,8 @@ less@2.5.7
 livedata@1.0.17
 localstorage@1.0.8
 logging@1.0.11
-meteor@1.1.13
-meteor-base@1.0.3
+meteor@1.1.10
+meteor-base@1.0.1
 minifier-css@1.1.10
 minifier-js@1.1.10
 minimongo@1.0.13
