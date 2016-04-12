@@ -3,12 +3,80 @@
 </head>
 
 <body>
-  <h1>Welcome to Meteor!</h1>
+  
+  <div class="container-fluid">
+    {{> loginButtons}}
+  </div>
 
-  {{> hello}}
+  <h1>Welcome to Citron List!</h1>
+
+  {{#if currentUser}}
+    {{> form}}
+  {{/if}}
+
+  {{> posts_list}}
+
+
 </body>
 
-<template name="hello">
-  <button>Click Me</button>
-  <p>You've pressed the button {{counter}} times.</p>
+<template name="form">
+  <div>
+  	<h2>Have a product do you think sucks? <button class="js-toggle-website-form btn btn-alert " type="submit" text="submit" action="submit" placeholder="submit">YES!</button></h2>
+
+    <div id="website_form" class="hidden_div">
+      HELLO I AM HIDDEN
+
+      <form class="js-save-product-form">
+      <div class="form-group">
+        <label for="brand">Brand</label>
+        <input type="text" class="form-control" id="brand" placeholder="What brand is the worst">
+      </div>
+      <div class="form-group">
+        <label for="mode">Model</label>
+        <input type="text" class="form-control" id="model" placeholder="The Product's Model">
+      </div>
+        <div class="form-group">
+        <label for="description">Description</label>
+        <input type="text" class="form-control" id="description" placeholder="Here's where it gets really bad">
+      </div>
+
+      <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+
+
+    </div>
+  	
+  </div>
+</template>
+
+
+<template name="posts_list">
+  <div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Brand</th>
+        <th>model</th>
+        <th>description</th>
+      </tr>
+    </thead>
+
+  {{#each posts}}
+    {{> post}}
+  {{/each}}
+
+  </table>
+</div>
+</template>
+
+<template name="post">
+    
+    <tbody>
+      <tr>
+        <td>{{brand}}</td>
+        <td>{{model}}</td>
+        <td>{{description}}</td>
+      </tr>
+    </tbody>
+
 </template>
