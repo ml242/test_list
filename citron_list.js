@@ -37,6 +37,7 @@ Template.form.events({
 
 			if (brand.length > 0 && model.length > 0 && description.length > 0 ) {
 				Posts.insert({
+					
 					brand: brand,
 					model: model,
 					description: description,
