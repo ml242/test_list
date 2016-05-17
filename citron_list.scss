@@ -1,0 +1,49 @@
+/* CSS declarations go here */
+.hidden_div{
+	display:none;
+}
+.btn-group button {
+	border-radius: 0;
+}
+
+/*nav elements*/
+
+.navbar {
+	border-radius: 0px;
+	margin-bottom: 0;
+}
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:hover, .navbar-default .navbar-nav>.active>a:focus {
+	/*background-color: none !important;*/
+	background-color: #333333;
+	color: #979797;
+}
+.navbar-default {
+	/*background-color: none !important;*/
+	background-color: #333333;
+}
+#login-dropdown-list a {
+	color: #979797;
+}
+.navbar-default .navbar-brand {
+	color: yellow;
+}
+/*nav elements*/
+
+
+/*cta section */
+.cta-section {
+	min-height: 8em;
+	padding-top: 2.5em;
+	background-color: #444444;
+}
+.btn-group {margin: 0 .5em;}
+p .btn-group { display: inline-block; }
+p .btn-group button { margin: 0 .75em; }
+p .btn-group button:last-child  { background-color: yellow; }
+p .btn-group button:last-child:hover  { background-color: yellowgreen }
+.cta-section div p { color:white ;}
+/*cta section */
+
+
+
+//  Product Section

@@ -3,15 +3,34 @@
 </head>
 
 <body>
+
+<div class="navbar navbar-default" role="navigation">
+    <div class="navbar-header">
+        <a class="navbar-brand" href="#">Citron List</a>
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+    </div>
+    <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Search</a></li>
+            <li class="active"><a href="#">Post</a></li>
+            <li class="active"><a href="#">About Us</a></li>
+            <li class="active"><a href="#">Contact Us</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            {{> loginButtons}} <!-- here -->
+        </ul>
+    </div>
+</div>
   
-  <div class="container-fluid">
-    {{> loginButtons}}
-  </div>
-
-  <h1>Welcome to Citron List!</h1>
-
   {{#if currentUser}}
     {{> form}}
+  {{else}}
+    {{> cta}}
   {{/if}}
 
   {{> posts_list}}
@@ -79,4 +98,21 @@
       </tr>
     </tbody>
 
+</template>
+
+<template name="cta">
+  <div class="container-fluid">
+    <section class="row cta-section">
+      <div class="col-md-12">
+        <p class="text-center">
+          <span>You hate crappy products, right?</span> 
+          <span style="color: #979797;">Bad services really annoy you?</span>
+          <span class="btn-group">
+            <button class="btn btn-default">Learn More</button> &nbsp;&nbsp;
+            <button class="btn btn-default" style="color: #979797;">Sign Up</button>
+          </span>
+        </p>
+      </div>
+    </section>
+  </div>
 </template>
