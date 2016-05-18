@@ -39,15 +39,16 @@
 </body>
 
 <template name="form">
-  <div>
-  	<h2>Have a product do you think sucks? 
+  <div class="container-fluid">
+  	<h2 class="text-center">Have a product do you think sucks? 
+      
       <button class="js-toggle-website-form btn btn-alert" type="submit" text="submit" action="submit" placeholder="submit">YES!</button>
-
+    
     </h2>
 
-    <div id="website_form" class="hidden_div">
+    <div id="website_form" class="hidden_div row">
 
-      <form class="js-save-product-form">
+      <form class="js-save-product-form col-md-6 col-md-push-3 col-sm-12">
       <div class="form-group">
         <label for="brand">Brand</label>
         <input type="text" class="form-control" id="brand" placeholder="What brand is the worst">
@@ -63,10 +64,7 @@
 
       <button type="submit" class="btn btn-default">Submit</button>
     </form>
-
-
     </div>
-  	
   </div>
 </template>
 
