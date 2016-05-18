@@ -72,7 +72,7 @@
 
 
 <template name="posts_list">
-    {{#each posts}}
+    {{#each posts loopCount 5}}
   <section class='container-fluid brand brand-{{id}}'>
     <ul class="brand-container list-unstyled">
       <!-- <li>{{@index}}</li> -->

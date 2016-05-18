@@ -23,7 +23,8 @@ if (Meteor.isClient) {
 
 			var user =  Meteor.users.find({_id: this.ownerId.toString() }).fetch();
 		  if (user) {
-		    return user[0].userName;
+		    debugger;
+		    return user[0].username;
 		  } else {
 		  	return "no data yet";
     	}
@@ -41,13 +42,12 @@ Template.form.events({
 
 		"submit .js-save-product-form":function(event){
 
-			console.log("i submitted")
-
 			// here is an example of how to get the url out of the form:
 			var brand = event.target.brand.value;
 			var description = event.target.description.value;
 			var model = event.target.model.value;
 			var ownerId = Meteor.user()._id;
+			console.log(ownerId)
 			
 			//  put your new brand complaint here!
 
@@ -120,13 +120,13 @@ if (Meteor.isServer) {
   		console.log("No Users yet. Creating starter data.");
   		Meteor.users.insert({	
     	  email: "matt@matt.com",
-    	  userName: "ml242",
+    	  username: "ml242",
     	  _id: "1",
     		createdOn: new Date()
     	});
     	 Meteor.users.insert({
     	  email: "martin@martin.com",
-    	  userName: "m4rt1n",
+    	  username: "m4rt1n",
     	  _id: "2",
     		createdOn: new Date()
     	});
