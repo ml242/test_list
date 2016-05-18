@@ -2,26 +2,44 @@
 @function ensureTextContrast($text-color, $background-color) {
   /* Checking text lightness difference from accent background */
   $diff: lightness($text-color) - lightness($background-color);
-
   /* If low brightness difference */
   @if abs($diff) < 15% {
-
     /* Dark background */
     @if lightness($background-color) < lightness(#aaaaaa) {
       @return lighten($text-color, 30);
     } 
-
     /* Light background */
     @else {
       @return darken($text-color, 30);
     }
   } 
-
   /* High enough contrast; @return original color */
   @else {
     @return $text-color;
   }
 }
+
+@function ensureTextContrastTitle($text-color, $background-color) {
+  /* Checking text lightness difference from accent background */
+  $diff: lightness($text-color) - lightness($background-color);
+  /* If low brightness difference */
+  @if abs($diff) < 15% {
+    /* Dark background */
+    @if lightness($background-color) < lightness(#aaaaaa) {
+      @return lighten($text-color, 100);
+    } 
+    /* Light background */
+    @else {
+      @return grayscale($text-color);
+    }
+  } 
+  /* High enough contrast; @return original color */
+  @else {
+    @return grayscale($text-color);
+  }
+}
+
+
 
 
 /* CSS declarations go here */
@@ -78,7 +96,19 @@ p .btn-group button:last-child:hover  { background-color: yellowgreen }
 
 //  Product Section
 
-section.brand { min-height: 20em;}
+
+section.brand { 
+	min-height: 20em;
+	li {
+		margin-top: 4em;
+	}
+	li:last-child {
+		margin-bottom: 4em;
+	}
+	h2.brand-description {
+		font-size: 400%;
+	}
+}
 
 $colors-list: #00CA8D #E3FFA7 #E3FFA7 #444444 #4444FF;
 $text-color: #979700;
@@ -87,12 +117,11 @@ $text-color: #979700;
     $i: index($colors-list, $current-color);
     section.brand-#{$i} { 
         background-color:: $current-color;
-    		.brand-container h2.brand-title {
+    		.brand-container h2.brand-description {
     			color: ensureTextContrast($text-color, $current-color);
 				}
+				.brand-container h3.brand-title {
+					color: ensureTextContrastTitle($text-color, $current-color);
+				}
     }
-}
-
-.brand-container h2.brand-title {
-	font-size: 400%;
 }
