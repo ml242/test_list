@@ -1,5 +1,6 @@
 Posts = new Mongo.Collection("posts");
-Users = Meteor.users;
+
+
 
 if (Meteor.isClient) {
   // counter starts at 0
@@ -10,10 +11,24 @@ if (Meteor.isClient) {
 	});
 
 
+	Template.posts_list.onCreated(function bodyOnCreated() {
+	  Meteor.subscribe('users');
+	});
+
 	Template.posts_list.helpers({
 		posts:function(){
 			return Posts.find({});
-		}
+		},
+		userName: function() {
+
+			var user =  Meteor.users.find({_id: this.ownerId.toString() }).fetch();
+		  if (user) {
+		    return user[0].userName;
+		  } else {
+		  	return "no data yet";
+    	}
+    }
+
 	});
 
 
@@ -32,8 +47,9 @@ Template.form.events({
 			var brand = event.target.brand.value;
 			var description = event.target.description.value;
 			var model = event.target.model.value;
+			var ownerId = Meteor.user()._id;
 			
-			//  put your website saving code in here!
+			//  put your new brand complaint here!
 
 			if (brand.length > 0 && model.length > 0 && description.length > 0 ) {
 				Posts.insert({
@@ -41,7 +57,9 @@ Template.form.events({
 					brand: brand,
 					model: model,
 					description: description,
-					createdOn:new Date()
+					createdOn:new Date(),
+					ownerId: ownerId
+
 				});
 				$('#error').text('')
 				$("#website_form").toggle('slow');
@@ -83,30 +101,40 @@ if (Meteor.isServer) {
     		model: "Apple iPhone 6s",
     		url:"http://www.apple.com", 
     		description:"These screens are made of paper.",
+    		id: 1,
+    		ownerId: "2",
     		createdOn:new Date()
     	});
     	 Posts.insert({
     	 	brand:"VW",
     		model:"Golf TDI", 
     		url:"http://www.vw.com", 
+    		id: 2,
+    		ownerId: "1",
     		description:"Gas Mileage is terrible - way worse than advertised", 
     		createdOn:new Date()
     	});
     }
 
-    if (!Users.findOne()) {
+    if (!Meteor.users.findOne()) {
   		console.log("No Users yet. Creating starter data.");
-  		Users.insert({	
+  		Meteor.users.insert({	
     	  email: "matt@matt.com",
     	  userName: "ml242",
-    		createdOn:new Date()
+    	  _id: "1",
+    		createdOn: new Date()
     	});
-    	 Users.insert({
+    	 Meteor.users.insert({
     	  email: "martin@martin.com",
     	  userName: "m4rt1n",
-    		createdOn:new Date()
+    	  _id: "2",
+    		createdOn: new Date()
     	});
     }
-
   });
+
+	 Meteor.publish("users",function(){
+        return Meteor.users.find();
+    });
+
 }

@@ -1,3 +1,29 @@
+// functions
+@function ensureTextContrast($text-color, $background-color) {
+  /* Checking text lightness difference from accent background */
+  $diff: lightness($text-color) - lightness($background-color);
+
+  /* If low brightness difference */
+  @if abs($diff) < 15% {
+
+    /* Dark background */
+    @if lightness($background-color) < lightness(#aaaaaa) {
+      @return lighten($text-color, 30);
+    } 
+
+    /* Light background */
+    @else {
+      @return darken($text-color, 30);
+    }
+  } 
+
+  /* High enough contrast; @return original color */
+  @else {
+    @return $text-color;
+  }
+}
+
+
 /* CSS declarations go here */
 .hidden_div{
 	display:none;
@@ -47,3 +73,22 @@ p .btn-group button:last-child:hover  { background-color: yellowgreen }
 
 
 //  Product Section
+
+section.brand { min-height: 20em;}
+
+$colors-list: #00CA8D #E3FFA7 #E3FFA7 #444444 #4444FF;
+$text-color: #979700;
+
+@each $current-color in $colors-list {
+    $i: index($colors-list, $current-color);
+    section.brand-#{$i} { 
+        background-color:: $current-color;
+    		.brand-container h2.brand-title {
+    			color: ensureTextContrast($text-color, $current-color);
+				}
+    }
+}
+
+.brand-container h2.brand-title {
+	font-size: 400%;
+}

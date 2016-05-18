@@ -40,10 +40,12 @@
 
 <template name="form">
   <div>
-  	<h2>Have a product do you think sucks? <button class="js-toggle-website-form btn btn-alert " type="submit" text="submit" action="submit" placeholder="submit">YES!</button></h2>
+  	<h2>Have a product do you think sucks? 
+      <button class="js-toggle-website-form btn btn-alert" type="submit" text="submit" action="submit" placeholder="submit">YES!</button>
+
+    </h2>
 
     <div id="website_form" class="hidden_div">
-      HELLO I AM HIDDEN
 
       <form class="js-save-product-form">
       <div class="form-group">
@@ -70,35 +72,18 @@
 
 
 <template name="posts_list">
-  <div class="container">
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Brand</th>
-        <th>model</th>
-        <th>description</th>
-      </tr>
-    </thead>
-
-  {{#each posts}}
-    {{> post}}
-  {{/each}}
-
-  </table>
-</div>
+    {{#each posts}}
+  <section class='container-fluid brand brand-{{id}}'>
+    <ul class="brand-container list-unstyled">
+      <!-- <li>{{@index}}</li> -->
+      <li>Product / {{brand}} / {{model}}</li>
+      <li><h2 class="brand-title">{{description}}</h2></li>
+      <li>owner: {{userName}}</li>
+    </ul>
+  </section>
+    {{/each}}
 </template>
 
-<template name="post">
-    
-    <tbody>
-      <tr>
-        <td>{{brand}}</td>
-        <td>{{model}}</td>
-        <td>{{description}}</td>
-      </tr>
-    </tbody>
-
-</template>
 
 <template name="cta">
   <div class="container-fluid">
