@@ -23,7 +23,6 @@ if (Meteor.isClient) {
 
 			var user =  Meteor.users.find({_id: this.ownerId.toString() }).fetch();
 		  if (user) {
-		    debugger;
 		    return user[0].username;
 		  } else {
 		  	return "no data yet";
@@ -37,8 +36,23 @@ Template.form.events({
 		"click .js-toggle-website-form":function(event){
 			event.preventDefault();
 			$("#website_form").toggle('fast');
+
+			$('.js-toggle-website-form').toggle();
+			$('#js-cancel-button').toggleClass('collapse');
 		},
 
+		"click #js-cancel-button":function(event){
+			event.preventDefault();
+			$("#website_form").toggle('fast');
+
+			$('.js-toggle-website-form').toggle();
+			$('#js-cancel-button').toggleClass('collapse');
+		},
+
+		"click #js-yes-button":function(event){
+			event.preventDefault();
+			$("#website_form").toggle('fast');
+		},
 
 		"submit .js-save-product-form":function(event){
 
@@ -66,6 +80,9 @@ Template.form.events({
 			} else {
 				$('#error').text('All fields must be filled out');
 			}
+			$('.js-toggle-website-form').toggle();
+			$('#js-cancel-button').toggleClass('collapse');
+			
 			return false;// stop the form submit from reloading the page
 
 		}
