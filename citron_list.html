@@ -73,14 +73,14 @@
 
 <template name="posts_list">
     {{#each posts loopCount 5}}
-  <section class='container-fluid brand brand-{{id}}'>
-    <ul class="brand-container list-unstyled">
-      <!-- <li>{{@index}}</li> -->
-      <li><h3 class="brand-title">Product / {{brand}} / {{model}}</h3></li>
-      <li><h2 class="brand-description">{{description}}</h2></li>
-      <li><h4 class="brand-owner">owner: {{userName}}</h4></li>
-    </ul>
-  </section>
+      <section class='container-fluid brand brand-{{@index}}'>
+        <ul class="brand-container list-unstyled">
+          <!-- <li>{{@index}}</li> -->
+          <li><h3 class="brand-title">Product / {{brand}} / {{model}}</h3></li>
+          <li><h2 class="brand-description">{{description}}</h2></li>
+          <li><h4 class="brand-owner">owner: {{userName}}</h4></li>
+        </ul>
+      </section>
     {{/each}}
 </template>
 

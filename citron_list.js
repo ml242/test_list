@@ -88,23 +88,6 @@ Template.form.events({
 		}
 	});
 
-
-
-
-
-//   Template.hello.helpers({
-//     counter: function () {
-//       return Session.get('counter');
-//     }
-//   });
-
-//   Template.hello.events({
-//     'click button': function () {
-//       // increment the counter when button is clicked
-//       Session.set('counter', Session.get('counter') + 1);
-//     }
-//   });
-// }
 }
 
 if (Meteor.isServer) {
@@ -118,7 +101,7 @@ if (Meteor.isServer) {
     		model: "Apple iPhone 6s",
     		url:"http://www.apple.com", 
     		description:"These screens are made of paper.",
-    		id: 1,
+    		_id: "1",
     		ownerId: "2",
     		createdOn:new Date()
     	});
@@ -126,7 +109,7 @@ if (Meteor.isServer) {
     	 	brand:"VW",
     		model:"Golf TDI", 
     		url:"http://www.vw.com", 
-    		id: 2,
+    		_id: "2",
     		ownerId: "1",
     		description:"Gas Mileage is terrible - way worse than advertised", 
     		createdOn:new Date()

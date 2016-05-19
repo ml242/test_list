@@ -115,7 +115,7 @@ $text-color: #979700;
 
 @each $current-color in $colors-list {
     $i: index($colors-list, $current-color);
-    section.brand-#{$i} { 
+    section.brand-#{$i - 1} { 
         background-color:: $current-color;
     		.brand-container h2.brand-description {
     			color: ensureTextContrast($text-color, $current-color);
