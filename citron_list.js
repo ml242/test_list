@@ -17,7 +17,7 @@ if (Meteor.isClient) {
 
 	Template.posts_list.helpers({
 		posts:function(){
-			return Posts.find({});
+			return Posts.find({}, {sort: {createdOn: -1}});
 		},
 		userName: function() {
 

@@ -126,3 +126,11 @@ $text-color: #979700;
 				}
     }
 }
+
+// about page
+
+.about-container {
+	width: 100%;
+	height: calc(100vh - 60px) !important;
+	background-color: lightblue;	
+}

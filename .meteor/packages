@@ -26,3 +26,5 @@ standard-minifier-js
 ian:accounts-ui-bootstrap-3
 seba:minifiers-autoprefixer
 fourseven:scss
+kadira:flow-router
+kadira:blaze-layout
