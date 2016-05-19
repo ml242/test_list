@@ -40,7 +40,7 @@
 
 <template name="form">
   <div class="container-fluid">
-  	<h2 class="text-center">Have a product do you think sucks? 
+  	<h2 class="text-center">Do you have a product that you think kind of sucks? 
       
       <button class="js-toggle-website-form btn btn-alert" type="submit" text="submit" action="submit" placeholder="submit" >YES!</button>
 
@@ -75,10 +75,11 @@
     {{#each posts loopCount 5}}
       <section class='container-fluid brand brand-{{@index}}'>
         <ul class="brand-container list-unstyled">
-          <!-- <li>{{@index}}</li> -->
-          <li><h3 class="brand-title">Product / {{brand}} / {{model}}</h3></li>
-          <li><h2 class="brand-description">{{description}}</h2></li>
-          <li><h4 class="brand-owner">owner: {{userName}}</h4></li>
+          <div class="row">
+            <li><h3 class="brand-title">Product / {{brand}} / {{model}}</h3></li>
+            <li><h2 class="brand-description">{{description}}</h2></li>
+            <li><h4 class="brand-owner">owner: {{userName}}</h4></li>
+          </div>
         </ul>
       </section>
     {{/each}}
@@ -91,7 +92,7 @@
       <div class="col-md-12">
         <p class="text-center">
           <span>You hate crappy products, right?</span> 
-          <span style="color: #979797;">Bad services really annoy you?</span>
+          <span style="color: #979797;">Bad service really annoys you?</span>
           <span class="btn-group">
             <button class="btn btn-default">Learn More</button> &nbsp;&nbsp;
             <button class="btn btn-default" style="color: #979797;">Sign Up</button>

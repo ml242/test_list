@@ -22,7 +22,8 @@ if (Meteor.isClient) {
 		userName: function() {
 
 			var user =  Meteor.users.find({_id: this.ownerId.toString() }).fetch();
-		  if (user) {
+
+		  if (user && user.length > 0 ) {
 		    return user[0].username;
 		  } else {
 		  	return "no data yet";

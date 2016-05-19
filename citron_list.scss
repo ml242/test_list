@@ -119,6 +119,7 @@ $text-color: #979700;
         background-color:: $current-color;
     		.brand-container h2.brand-description {
     			color: ensureTextContrast($text-color, $current-color);
+    			max-width: 75%;
 				}
 				.brand-container h3.brand-title {
 					color: ensureTextContrastTitle($text-color, $current-color);
