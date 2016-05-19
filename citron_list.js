@@ -3,8 +3,12 @@ Posts = new Mongo.Collection("posts");
 
 
 if (Meteor.isClient) {
-  // counter starts at 0
-  Session.setDefault('counter', 0);
+
+	Tracker.autorun(function(){
+		if(!Accounts.userId()) {
+			FlowRouter.go('/')
+		}
+	})
 
 	Accounts.ui.config({
 		passwordSignupFields: "USERNAME_AND_EMAIL"
