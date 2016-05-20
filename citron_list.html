@@ -31,15 +31,12 @@
 </template>
 
 <template name="citronHome">
-    
     {{#if currentUser}}
       {{> form}}
     {{else}}
       {{> cta}}
     {{/if}}
-
     {{> posts_list}}
-
 </template>
 
 <template name="aboutPage">
@@ -87,14 +84,42 @@
 </template>
 
 
+<template name="userDetailsModal">
+  <div class="modal" id="userDetailsModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          details for: {{thisUser _id}}
+          <ul>
+            {{#each theirActions _id}}
+              <li>{{description}}</li>
+            {{/each}}
+          </ul>
+        </div>
+      </div>
+    </div>  
+  </div>
+</template>
+
+
+
 <template name="posts_list">
     {{#each posts loopCount 5}}
       <section class='container-fluid brand brand-{{@index}}'>
         <ul class="brand-container list-unstyled">
           <div class="row">
             <li><h3 class="brand-title">Product / {{brand}} / {{model}}</h3></li>
-            <li><h2 class="brand-description">{{description}}</h2></li>
-            <li><h4 class="brand-owner">owner: {{userName}}</h4></li>
+            
+            <li>
+              <h2 class="brand-description">{{description}} 
+              </h2>
+            </li>
+            
+            <li><h4 class="brand-owner">owner: {{userName}}
+                <a class="btn show-details" type="button" data-attr={{_id}}>show details</a>
+                </h4>
+            </li>
+          
           </div>
         </ul>
       </section>

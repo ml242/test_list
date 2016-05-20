@@ -10,6 +10,15 @@ if (Meteor.isClient) {
 		}
 	})
 
+	Template.citronHome.events({
+  	'click .show-details'() {
+  		var that = this;
+    	Modal.show('userDetailsModal', function(){
+        return Meteor.users.findOne(that.ownerId);
+    	});
+  	},
+	});
+
 	Accounts.ui.config({
 		passwordSignupFields: "USERNAME_AND_EMAIL"
 	});
@@ -19,22 +28,34 @@ if (Meteor.isClient) {
 	  Meteor.subscribe('users');
 	});
 
+
+
 	Template.posts_list.helpers({
 		posts:function(){
 			return Posts.find({}, {sort: {createdOn: -1}});
 		},
 		userName: function() {
-
 			var user =  Meteor.users.find({_id: this.ownerId.toString() }).fetch();
-
 		  if (user && user.length > 0 ) {
 		    return user[0].username;
 		  } else {
 		  	return "no data yet";
     	}
     }
-
 	});
+
+
+
+
+	Template.userDetailsModal.helpers({
+		thisUser: function(id){
+			return user = Meteor.users.find({_id: id}).fetch()[0].username;
+		},
+		theirActions: function(id) {
+			debugger;
+			return theirActions = Posts.find({ownerId: id}).fetch();
+		}
+	})
 
 
 Template.form.events({
