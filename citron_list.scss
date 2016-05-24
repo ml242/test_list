@@ -42,12 +42,20 @@
 
 
 
-/* CSS declarations go here */
+/* General CSS declarations go here */
 .hidden_div{
 	display:none;
 }
 .btn-group button {
 	border-radius: 0;
+}
+.btn-black {
+  background-color: black;
+  color: white;
+}
+.btn-white {
+  background-color: white;
+  color: black;
 }
 
 /*nav elements*/
@@ -81,11 +89,12 @@
 	background-color: #444444;
 }
 .btn-group {margin: 0 .5em;}
-p .btn-group { display: inline-block; }
-p .btn-group button { margin: 0 .75em; }
-p .btn-group button:last-child  { background-color: yellow; }
+h2 .btn-group, p .btn-group { display: inline-block; }
+h2 .btn-group, p .btn-group button { margin: 0 .75em; }
+// h2 .btn-group, p .btn-group button:last-child  { background-color: yellow; }
 p .btn-group button:last-child:hover  { background-color: yellowgreen }
 .cta-section div p { color:white ;}
+.btn-group .btn-black { margin-right: 1em;}
 /*cta section */
 
 // Product Form
@@ -117,11 +126,11 @@ $text-color: #979700;
     $i: index($colors-list, $current-color);
     section.brand-#{$i - 1} { 
         background-color:: $current-color;
-    		.brand-container h2.brand-description {
+    		.brand-container li h2.brand-description a {
     			color: ensureTextContrast($text-color, $current-color);
     			max-width: 75%;
 				}
-				.brand-container h3.brand-title {
+				.brand-container li h3.brand-title a {
 					color: ensureTextContrastTitle($text-color, $current-color);
 				}
     }

@@ -4,11 +4,19 @@ Posts = new Mongo.Collection("posts");
 
 if (Meteor.isClient) {
 
+	if (!Array.prototype.last){
+    Array.prototype.last = function(){
+        return this[this.length - 1];
+    };
+	};
+
 	Tracker.autorun(function(){
 		if(!Accounts.userId()) {
-			FlowRouter.go('/')
+			if (window.location.pathname != "/about" || '/'){
+				FlowRouter.go('/')
+			}
 		}
-	})
+	});
 
 	Template.citronHome.events({
   	'click .show-details'() {
@@ -44,21 +52,18 @@ if (Meteor.isClient) {
     }
 	});
 
-
-
-
-	Template.userDetailsModal.helpers({
-		thisUser: function(id){
-			return user = Meteor.users.find({_id: id}).fetch()[0].username;
-		},
-		theirActions: function(id) {
-			debugger;
-			return theirActions = Posts.find({ownerId: id}).fetch();
-		}
-	})
-
+Template.userDetailsModal.helpers({
+	thisUser: function(id){
+		return user = Meteor.users.find({_id: id}).fetch()[0].username;
+	},
+	theirActions: function(id) {
+		debugger;
+		return theirActions = Posts.find({ownerId: id}).fetch();
+	}
+});
 
 Template.form.events({
+
 		"click .js-toggle-website-form":function(event){
 			event.preventDefault();
 			$("#website_form").toggle('fast');
@@ -110,8 +115,25 @@ Template.form.events({
 			$('#js-cancel-button').toggleClass('collapse');
 			
 			return false;// stop the form submit from reloading the page
-
 		}
+
+	});
+
+	Template.cta.events({
+			"click .js-learnMore":function(event){
+				event.preventDefault();
+				FlowRouter.go("/about");
+			}
+	});
+
+
+	Template.citronItem.helpers({
+		itemOwner:function(id){
+			return user = Meteor.users.find(id).fetch();
+		},
+		citron:function(){
+			return Posts.findOne({_id: citron});
+		},
 	});
 
 }

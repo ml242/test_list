@@ -49,6 +49,16 @@
   </div>
 </template>
 
+<template name="citronItem">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="about-container">
+        {{citron.description}}
+      </div>
+    </div>
+  </div>
+</template>
+
 
 
 <template name="form">
@@ -89,7 +99,10 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          details for: {{thisUser _id}}
+          
+          <p>Details for {{thisUser _id}}</p>
+          
+          <p>Citron's:</p>
           <ul>
             {{#each theirActions _id}}
               <li>{{description}}</li>
@@ -108,18 +121,29 @@
       <section class='container-fluid brand brand-{{@index}}'>
         <ul class="brand-container list-unstyled">
           <div class="row">
-            <li><h3 class="brand-title">Product / {{brand}} / {{model}}</h3></li>
+            <li class="col-md-10 col-push-1"><h3 class="brand-title">Product / {{brand}} / {{model}}</h3></li>
             
-            <li>
-              <h2 class="brand-description">{{description}} 
+            <li class="col-md-10 col-push-1">
+              <h2 class="brand-description"><a href="/citron/{{_id}}">{{description}}</a>
               </h2>
             </li>
             
-            <li><h4 class="brand-owner">owner: {{userName}}
-                <a class="btn show-details" type="button" data-attr={{_id}}>show details</a>
-                </h4>
+            <li class="col-md-10 col-push-1">
+             
+                <h2 class="brand-owner">
+                  
+                  <a class="btn show-details" data-attr={{_id}}>
+                    owner: {{userName}}
+                  </a>
+                
+                  <span class="btn-group">
+                    <button class="js-learnMoreItem btn btn-default btn-black">Learn More</button> &nbsp;&nbsp;
+                    <button class="btn btn-default btn-white" style="">Report</button>
+                  </span>
+
+                </h2>
+
             </li>
-          
           </div>
         </ul>
       </section>
@@ -135,7 +159,7 @@
           <span>You hate crappy products, right?</span> 
           <span style="color: #979797;">Bad service really annoys you?</span>
           <span class="btn-group">
-            <button class="btn btn-default">Learn More</button> &nbsp;&nbsp;
+            <button class="js-learnMore btn btn-default">Learn More</button> &nbsp;&nbsp;
             <button class="btn btn-default" style="color: #979797;">Sign Up</button>
           </span>
         </p>
