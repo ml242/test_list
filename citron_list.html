@@ -74,21 +74,22 @@
     <div id="website_form" class="hidden_div row">
 
       <form class="js-save-product-form col-md-6 col-md-push-3 col-sm-12">
-      <div class="form-group">
-        <label for="brand">Brand</label>
-        <input type="text" class="form-control" id="brand" placeholder="What brand is the worst">
-      </div>
-      <div class="form-group">
-        <label for="mode">Model</label>
-        <input type="text" class="form-control" id="model" placeholder="The Product's Model">
-      </div>
         <div class="form-group">
-        <label for="description">Description</label>
-        <input type="text" class="form-control" id="description" placeholder="Here's where it gets really bad">
-      </div>
+          <label for="brand">Brand</label>
+          <input type="text" class="form-control" id="brand" placeholder="What brand is the worst">
+        </div>
+        <div class="form-group">
+          <label for="mode">Model</label>
+          <input type="text" class="form-control" id="model" placeholder="The Product's Model">
+        </div>
+          <div class="form-group">
+          <label for="description">Description</label>
+          <input type="text" class="form-control" id="description" placeholder="Here's where it gets really bad">
+        </div>
 
-      <button type="submit" class="btn btn-default">Submit</button>
-    </form>
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form>
+
     </div>
   </div>
 </template>
@@ -114,6 +115,49 @@
   </div>
 </template>
 
+<template name="addReportModal">
+   <div class="modal" id="addReportModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+
+            <div id="formError"></div>
+                    
+            <h2>Testify, witness!</h2>
+
+            <form class="js-add-report-form">
+                {{#each productInfo citron}}
+                  <div class="form-group">
+                    <label for="brand">Brand</label>
+                        <p>{{brand}}</p>
+                  </div>
+                  <div class="form-group">
+                    <label for="mode">Model</label>
+                    <p>{{model}}</p>
+                  </div>
+                  <div class="form-group">
+                    <label for="description">Description</label>
+                    <p>{{description}}</p>
+                  </div>
+                  <div class="form-group">
+                    <label for="checkbox">Yes, this happened to me as well. Let's make Citronade and warn the people.</label>
+                    <input type="checkbox" class="add-report-affirmative">
+                  </div>
+                  <div class="form-group">
+                    <label for="checkbox">I would like to be notified about an upcoming class action lawsuit (not mandatory)</label>
+                    <input type="checkbox" class="add-report-lawsuit">
+                  </div>
+                {{/each}}
+
+              <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+
+        </div>
+      </div>
+    </div>  
+  </div>
+
+</template>
 
 
 <template name="posts_list">
@@ -137,8 +181,12 @@
                   </a>
                 
                   <span class="btn-group">
-                    <button class="js-learnMoreItem btn btn-default btn-black">Learn More</button> &nbsp;&nbsp;
-                    <button class="btn btn-default btn-white" style="">Report</button>
+                    <button class="js-learnMoreItem btn btn-default btn-black">Learn More
+                    </button> &nbsp;&nbsp;
+                    <button class="btn btn-default btn-white js-user-add-report" data-attr={{_id}}>Report
+                    </button>
+                    <h5 class="inline">Witnesses: {{witnessCount}}</h5>
+
                   </span>
 
                 </h2>

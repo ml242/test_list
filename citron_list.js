@@ -19,12 +19,30 @@ if (Meteor.isClient) {
 	});
 
 	Template.citronHome.events({
+  	
+  	// Modals
+
   	'click .show-details'() {
   		var that = this;
     	Modal.show('userDetailsModal', function(){
         return Meteor.users.findOne(that.ownerId);
     	});
   	},
+
+  	'click .js-user-add-report'() {
+  		var that = this;
+    	Modal.show('addReportModal', function(){
+        return Posts.findOne(that._id);
+  		});
+  	},
+
+  	// javascript links
+
+		'click .js-learnMoreItem'() {
+  		var that = this;
+      FlowRouter.go('/citron/' + that._id);
+  	}
+
 	});
 
 	Accounts.ui.config({
@@ -57,10 +75,74 @@ Template.userDetailsModal.helpers({
 		return user = Meteor.users.find({_id: id}).fetch()[0].username;
 	},
 	theirActions: function(id) {
-		debugger;
 		return theirActions = Posts.find({ownerId: id}).fetch();
 	}
 });
+
+Template.addReportModal.helpers({	
+	productInfo: function(id){	
+		return product = Posts.find({_id: this._id}).fetch();
+	}
+});
+
+Template.addReportModal.events({
+	"submit .js-add-report-form":function(event){
+			
+			//  put your new brand witness here!
+			event.preventDefault();
+
+				var terms = $('.add-report-affirmative').is(':checked');
+				var checked = $('.add-report-lawsuit').is(':checked');
+				var wc = this.witnessCount;
+
+
+
+
+
+
+				if ( Meteor.user() !== null ) {
+	
+					if (!terms) {
+						$('#formError').text('You must agree to the terms');
+						return false;
+					} else {
+
+
+								debugger;
+
+								// db.schools.find( { zipcode: "63109" }, { students: { $elemMatch: { school: 102 } } } )
+								if ( Posts.find({  witnessId: Meteor.userId() } ) .fetch().length === 0 ){
+										Posts.update({_id: this._id}, { $set: {witnessCount: wc + 1}})
+								}
+
+
+
+								Posts.update({_id: this._id}, { $push: { witnesses: 
+										{	
+											createdOn: new Date(),
+											witnessId: Meteor.userId(),
+											contactMe: checked
+										}
+									}
+								});
+
+
+
+					}
+				
+				} else {
+
+					$('#formError').text('You must login to bear witness');
+					return false;
+
+				}
+
+
+				// TODO close modal with javascript
+
+				return false;// stop the form submit from reloading the page
+		}
+})
 
 Template.form.events({
 
@@ -151,7 +233,10 @@ if (Meteor.isServer) {
     		description:"These screens are made of paper.",
     		_id: "1",
     		ownerId: "2",
-    		createdOn:new Date()
+    		createdOn:new Date(),
+    		witnesses: [],
+    		witnessCount: 0
+
     	});
     	 Posts.insert({
     	 	brand:"VW",
@@ -160,7 +245,9 @@ if (Meteor.isServer) {
     		_id: "2",
     		ownerId: "1",
     		description:"Gas Mileage is terrible - way worse than advertised", 
-    		createdOn:new Date()
+    		createdOn:new Date(),
+    		witnesses: [],
+    		witnessCount: 0
     	});
     }
 
