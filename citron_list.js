@@ -134,7 +134,7 @@ Template.addReportModal.events({
 
 
 				$('.modal').hide();
-				
+
 				return false;// stop the form submit from reloading the page
 		}
 })

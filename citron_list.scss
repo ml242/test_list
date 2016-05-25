@@ -61,6 +61,10 @@
   display: inline;
 }
 
+button li .dropdown-menu .btn:first-child {
+  margin-left: 0px;
+}
+
 /*nav elements*/
 
 .navbar {

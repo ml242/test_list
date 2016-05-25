@@ -17,7 +17,9 @@
       <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
               <li class="active"><a href="#">Search</a></li>
-              <li class="active"><a href="#">Post</a></li>
+              {{#if currentUser}}
+                <li class="active"><a href="#">Post</a></li>
+              {{/if}}
               <li class="active"><a href="/about">About Us</a></li>
               <li class="active"><a href="#">Contact Us</a></li>
           </ul>
@@ -208,7 +210,8 @@
           <span style="color: #979797;">Bad service really annoys you?</span>
           <span class="btn-group">
             <button class="js-learnMore btn btn-default">Learn More</button> &nbsp;&nbsp;
-            <button class="btn btn-default" style="color: #979797;">Sign Up</button>
+            <button class="btn inline list-unstyled" style="color: #979797;">
+              {{> loginButtons}} </button>
           </span>
         </p>
       </div>
