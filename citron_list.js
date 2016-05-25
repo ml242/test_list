@@ -107,9 +107,6 @@ Template.addReportModal.events({
 						return false;
 					} else {
 
-
-								debugger;
-
 								// db.schools.find( { zipcode: "63109" }, { students: { $elemMatch: { school: 102 } } } )
 								if ( Posts.find({  witnessId: Meteor.userId() } ) .fetch().length === 0 ){
 										Posts.update({_id: this._id}, { $set: {witnessCount: wc + 1}})
@@ -126,8 +123,6 @@ Template.addReportModal.events({
 									}
 								});
 
-
-
 					}
 				
 				} else {
@@ -138,8 +133,8 @@ Template.addReportModal.events({
 				}
 
 
-				// TODO close modal with javascript
-
+				$('.modal').hide();
+				
 				return false;// stop the form submit from reloading the page
 		}
 })
