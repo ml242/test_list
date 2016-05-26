@@ -161,6 +161,21 @@
 
 </template>
 
+<template name="listReportingUsers">
+  <div class="modal" id="listReportingUsers" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          {{#each reports}}
+            {{username}}
+          {{/each}}
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</template>
+
 
 <template name="posts_list">
     {{#each posts loopCount 5}}
@@ -187,7 +202,9 @@
                     </button> &nbsp;&nbsp;
                     <button class="btn btn-default btn-white js-user-add-report" data-attr={{_id}}>Report
                     </button>
-                    <h5 class="inline">Witnesses: {{witnessCount}}</h5>
+                    <h4 class="inline">Witnesses: 
+                      <a class="js-list-reporting-users" data-attr={{_id}}>{{witnessCount}}</a>
+                    </h4>
 
                   </span>
 

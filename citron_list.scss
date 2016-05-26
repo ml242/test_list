@@ -1,3 +1,9 @@
+@import url(https://fonts.googleapis.com/css?family=Biryani:400,700,900);
+
+body {
+  font-family: 'Biryani', sans-serif;
+}
+
 // functions
 @function ensureTextContrast($text-color, $background-color) {
   /* Checking text lightness difference from accent background */
@@ -110,6 +116,7 @@ p .btn-group button:last-child:hover  { background-color: yellowgreen }
 	margin-bottom: 4em;
 }
 
+
 // Report Product form 
 #formError {
   color: red;
@@ -147,6 +154,10 @@ $text-color: #979700;
 				}
         .brand-owner a {
           color: ensureTextContrastTitle($text-color, $current-color); 
+        }
+        .brand-owner .btn-group a {
+          color: red;
+          cursor: pointer;
         }
     }
 }

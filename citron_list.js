@@ -36,6 +36,10 @@ if (Meteor.isClient) {
   		});
   	},
 
+  	'click .js-list-reporting-users'() {
+  		Modal.show('listReportingUsers', this._id);
+  	},
+
   	// javascript links
 
 		'click .js-learnMoreItem'() {
@@ -79,6 +83,19 @@ Template.userDetailsModal.helpers({
 	}
 });
 
+Template.listReportingUsers.helpers({
+	reports: function(id){
+		var witnessesIds = Posts.find({_id: this[0]}).fetch()[0].witnesses;
+		users = []
+		witnessesIds.forEach(function(id){
+  		user = Meteor.users.findOne(id.witnessId)
+			users.push(user)
+		})
+		return users
+	}
+});
+
+
 Template.addReportModal.helpers({	
 	productInfo: function(id){	
 		return product = Posts.find({_id: this._id}).fetch();
@@ -95,11 +112,6 @@ Template.addReportModal.events({
 				var checked = $('.add-report-lawsuit').is(':checked');
 				var wc = this.witnessCount;
 
-
-
-
-
-
 				if ( Meteor.user() !== null ) {
 	
 					if (!terms) {
@@ -107,21 +119,31 @@ Template.addReportModal.events({
 						return false;
 					} else {
 
-								// db.schools.find( { zipcode: "63109" }, { students: { $elemMatch: { school: 102 } } } )
-								if ( Posts.find({  witnessId: Meteor.userId() } ) .fetch().length === 0 ){
+							// https://docs.mongodb.com/v3.0/tutorial/query-documents/#specify-multiple-criteria-for-array-elements
+
+								if ( Posts.find({ _id: this._id, 'witnesses.witnessId': Meteor.user()._id }).fetch().length < 1 ){
 										Posts.update({_id: this._id}, { $set: {witnessCount: wc + 1}})
+										Posts.update({_id: this._id}, { $push: { witnesses: 
+												{	
+													createdOn: new Date(),
+													witnessId: Meteor.userId(),
+													contactMe: checked
+												}
+											}
+										});
+
+								} else {
+									
+									$('#formError').text('We got you already, brosef!');
+
+									setInterval(function(){
+										Modal.hide()
+									}, 2000)
+
+									return false;
+
 								}
 
-
-
-								Posts.update({_id: this._id}, { $push: { witnesses: 
-										{	
-											createdOn: new Date(),
-											witnessId: Meteor.userId(),
-											contactMe: checked
-										}
-									}
-								});
 
 					}
 				
@@ -132,8 +154,7 @@ Template.addReportModal.events({
 
 				}
 
-
-				$('.modal').hide();
+				Modal.hide();
 
 				return false;// stop the form submit from reloading the page
 		}
