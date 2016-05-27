@@ -18,8 +18,20 @@ if (Meteor.isClient) {
 		}
 	});
 
+	Template.mainLayout.events({
+		"keyup li.search input": function(event){
+			var searchString = $('li.search input').val();
+			var cursor = Posts.find({ description: searchString });
+		}
+	});
+
+	Template.mainLayout.helpers({
+		searchResults: function(){
+			return results = Posts.find({brand: results}).fetch();
+		}
+	});
+
 	Template.citronHome.events({
-  	
   	// Modals
 
   	'click .show-details'() {
@@ -71,6 +83,9 @@ if (Meteor.isClient) {
 		  } else {
 		  	return "no data yet";
     	}
+    },
+    witnessCountGreaterThanZero: function(){
+    	return this.witnessCount > 0 ? true : false;
     }
 	});
 
@@ -94,6 +109,12 @@ Template.listReportingUsers.helpers({
 		return users
 	}
 });
+
+Template.listReportingUsers.events({
+	"click a.js-user-link":function(event){
+		Modal.hide();
+	}
+})
 
 
 Template.addReportModal.helpers({	
@@ -232,6 +253,12 @@ Template.form.events({
 		citron:function(){
 			return Posts.findOne({_id: citron});
 		},
+	});
+
+	Template.citronUser.helpers({
+		user: function(){
+			return user
+		}
 	});
 
 }

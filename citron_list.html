@@ -1,5 +1,8 @@
 <head>
   <title>citron_list</title>
+
+  <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700' rel='stylesheet' type='text/css'>
+
 </head>
 
 <template name="mainLayout">
@@ -16,12 +19,18 @@
       </div>
       <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-              <li class="active"><a href="#">Search</a></li>
               {{#if currentUser}}
                 <li class="active"><a href="#">Post</a></li>
               {{/if}}
               <li class="active"><a href="/about">About Us</a></li>
               <li class="active"><a href="#">Contact Us</a></li>
+              <li class="active search">Search &nbsp;<input type="text" placeholder="">
+              {{#if results}}
+                {{#each searchResults results}}
+                  {{results.brand}}
+                {{/each}}
+              {{/if}}
+            </li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
               {{> loginButtons}} <!-- here -->
@@ -56,6 +65,17 @@
     <div class="row">
       <div class="about-container">
         {{citron.description}}
+      </div>
+    </div>
+  </div>
+</template>
+
+
+<template name="citronUser">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="about-container">
+        user: {{user.username}}
       </div>
     </div>
   </div>
@@ -166,9 +186,11 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
+          <ul>
           {{#each reports}}
-            {{username}}
+            <li><a class="js-user-link" href="users/{{_id}}">{{username}}</a></li>
           {{/each}}
+        </ul>
         </div>
       </div>
     </div>
@@ -202,9 +224,11 @@
                     </button> &nbsp;&nbsp;
                     <button class="btn btn-default btn-white js-user-add-report" data-attr={{_id}}>Report
                     </button>
-                    <h4 class="inline">Witnesses: 
-                      <a class="js-list-reporting-users" data-attr={{_id}}>{{witnessCount}}</a>
-                    </h4>
+                    {{#if witnessCountGreaterThanZero}}
+                      <h4 class="inline">Witnesses: 
+                        <a class="js-list-reporting-users" data-attr={{_id}}>{{witnessCount}}</a>
+                      </h4>
+                    {{/if}}
 
                   </span>
 

@@ -1,10 +1,3 @@
-// FlowRouter.route('/blog/:postId', {
-//     name: 'blogPost',
-//     action: function(params) {
-//         console.log("This is my blog post:", params.postId);
-//     }
-// });
-
 FlowRouter.route('/', {
   action: function() {
     BlazeLayout.render("mainLayout", {content: "citronHome"});
@@ -23,5 +16,14 @@ FlowRouter.route('/citron/:_id', {
 	    console.log("item id:", params._id);
 	    BlazeLayout.render("mainLayout", {content: "citronItem"});
 	    return citron = params._id
+  }
+});
+
+FlowRouter.route('/users/:_id', {
+  name: 'citron-user',
+    action: function(params) {
+      console.log("user id:", params._id);
+      BlazeLayout.render("mainLayout", {content: "citronUser"});
+      return thisUser = params._id
   }
 });

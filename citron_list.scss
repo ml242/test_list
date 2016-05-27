@@ -1,7 +1,5 @@
-@import url(https://fonts.googleapis.com/css?family=Biryani:400,700,900);
-
 body {
-  font-family: 'Biryani', sans-serif;
+  font-family: 'Noto Sans', Lato, sans-serif;
 }
 
 // functions
@@ -91,6 +89,11 @@ button li .dropdown-menu .btn:first-child {
 }
 .navbar-default .navbar-brand {
 	color: yellow;
+}
+li.search {
+  margin-top: 16px;
+  padding-left: 15px;
+  color: #979797;
 }
 /*nav elements*/
 
