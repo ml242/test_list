@@ -15,6 +15,7 @@ FlowRouter.route('/citron/:_id', {
     action: function(params) {
 	    console.log("item id:", params._id);
 	    BlazeLayout.render("mainLayout", {content: "citronItem"});
+      Modal.hide();
 	    return citron = params._id
   }
 });
@@ -24,6 +25,7 @@ FlowRouter.route('/users/:_id', {
     action: function(params) {
       console.log("user id:", params._id);
       BlazeLayout.render("mainLayout", {content: "citronUser"});
+      Modal.hide();
       return thisUser = params._id
   }
 });

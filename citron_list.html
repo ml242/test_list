@@ -123,12 +123,12 @@
       <div class="modal-content">
         <div class="modal-header">
           
-          <p>Details for {{thisUser _id}}</p>
+          <p>Details for <a href="/users/{{_id}}">{{thisUser _id}}</a></p>
           
           <p>Citron's:</p>
           <ul>
             {{#each theirActions _id}}
-              <li>{{description}}</li>
+              <a href="citron/{{_id}}"><li>{{description}}</li></a>
             {{/each}}
           </ul>
         </div>

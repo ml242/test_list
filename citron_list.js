@@ -112,7 +112,7 @@ Template.listReportingUsers.helpers({
 
 Template.listReportingUsers.events({
 	"click a.js-user-link":function(event){
-		Modal.hide();
+		// Modal.hide();
 	}
 })
 
@@ -257,7 +257,7 @@ Template.form.events({
 
 	Template.citronUser.helpers({
 		user: function(){
-			return user
+			return Meteor.users.findOne(thisUser);
 		}
 	});
 
