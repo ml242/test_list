@@ -222,7 +222,7 @@ Template.form.events({
 					model: model,
 					description: description,
 					createdOn:new Date(),
-					witnessCount: 0;
+					witnessCount: 0,
 					ownerId: ownerId
 
 				});
