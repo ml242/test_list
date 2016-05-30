@@ -43,7 +43,10 @@ body {
   }
 }
 
-
+// @function get-vh($target) { 
+//   $vh-context: (1000*.01) * 1px;
+//   @return ($target/$vh-context) * 1vh;
+// }
 
 
 /* General CSS declarations go here */
@@ -63,6 +66,10 @@ body {
 }
 .inline {
   display: inline;
+}
+
+section {
+  min-height: 30vh;
 }
 
 button li .dropdown-menu .btn:first-child {
@@ -112,6 +119,12 @@ p .btn-group button:last-child:hover  { background-color: yellowgreen }
 .cta-section div p { color:white ;}
 .btn-group .btn-black { margin-right: 1em;}
 /*cta section */
+
+
+.post-cta h2 {
+  margin-top: 11vh;
+  margin-bottom:  10vh;
+}
 
 // Product Form
 
