@@ -197,6 +197,22 @@
       </div>
     </div>
   </div>
+</template>
+
+<template name="editPostModal">
+  <div class="modal" id="editPostModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <ul>
+          
+            Edit post modal
+
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
   
 </template>
 
@@ -207,7 +223,7 @@
         <ul class="brand-container list-unstyled">
           <div class="row">
             <li class="col-md-10 col-push-1"><h3 class="brand-title">Product / {{brand}} / {{model}}</h3></li>
-            
+            {{#if isEditable}}<li class="col-md-2" id="editPost"><a href="#">edit</a></li>{{/if}}
             <li class="col-md-10 col-push-1">
               <h2 class="brand-description"><a href="/citron/{{_id}}">{{description}}</a>
               </h2>
@@ -228,7 +244,7 @@
                     </button>
                     {{#if witnessCountGreaterThanZero}}
                       <h4 class="inline">Witnesses: 
-                        <a class="js-list-reporting-users" data-attr={{_id}}>{{witnessCount}}</a>
+                        <a id="js-list-reporting-users" data-attr={{_id}}>{{witnessCount}}</a>
                       </h4>
                     {{/if}}
 

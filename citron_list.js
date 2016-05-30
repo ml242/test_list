@@ -48,10 +48,6 @@ if (Meteor.isClient) {
   		});
   	},
 
-  	'click .js-list-reporting-users'() {
-  		Modal.show('listReportingUsers', this._id);
-  	},
-
   	// javascript links
 
 		'click .js-learnMoreItem'() {
@@ -70,24 +66,34 @@ if (Meteor.isClient) {
 	  Meteor.subscribe('users');
 	});
 
-
-
-	Template.posts_list.helpers({
-		posts:function(){
-			return Posts.find({}, {sort: {createdOn: -1}});
+	Template.posts_list.events({
+		"click #editPost": function(){
+			Modal.show('editPostModal', this._id);
 		},
-		userName: function() {
-			var user =  Meteor.users.find({_id: this.ownerId.toString() }).fetch();
-		  if (user && user.length > 0 ) {
-		    return user[0].username;
-		  } else {
-		  	return "no data yet";
-    	}
-    },
-    witnessCountGreaterThanZero: function(){
-    	return this.witnessCount > 0 ? true : false;
-    }
+	'click #js-list-reporting-users'() {
+  		Modal.show('listReportingUsers', this._id);
+  	}
 	});
+
+Template.posts_list.helpers({
+	posts:function(){
+		return Posts.find({}, {sort: {createdOn: -1}});
+	},
+	userName: function() {
+		var user =  Meteor.users.find({_id: this.ownerId.toString() }).fetch();
+	  if (user && user.length > 0 ) {
+	    return user[0].username;
+	  } else {
+	  	return "no data yet";
+  	}
+  },
+  isEditable: function(){
+  	return this.ownerId === Meteor.user()._id ? true : false;
+  },
+  witnessCountGreaterThanZero: function(){
+  	return this.witnessCount > 0 ? true : false;
+  }
+});
 
 Template.userDetailsModal.helpers({
 	thisUser: function(id){
