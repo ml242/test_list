@@ -293,6 +293,17 @@ if (Meteor.isServer) {
     		witnesses: [],
     		witnessCount: 0
     	});
+    	 Posts.insert({
+    	 	brand:"Honda",
+    		model:"Odyssey", 
+    		url:"http://www.honda.com", 
+    		_id: "3",
+    		ownerId: "2",
+    		description:"This intelligent car is dumb!!!!", 
+    		createdOn:new Date(),
+    		witnesses: [],
+    		witnessCount: 0
+    	});
     }
 
     if (!Meteor.users.findOne()) {
@@ -305,7 +316,7 @@ if (Meteor.isServer) {
     	});
     	 Meteor.users.insert({
     	  email: "martin@martin.com",
-    	  username: "m4rt1n",
+    	  username: "martin",
     	  _id: "2",
     		createdOn: new Date()
     	});
