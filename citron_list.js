@@ -163,7 +163,7 @@ Template.addReportModal.events({
 									
 									$('#formError').text('We got you already, brosef!');
 
-									setInterval(function(){
+									setTimeout(function(){
 										Modal.hide()
 									}, 2000)
 
