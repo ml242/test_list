@@ -171,7 +171,7 @@ $text-color: #979700;
         .brand-owner a {
           color: ensureTextContrastTitle($text-color, $current-color); 
         }
-        .brand-owner .btn-group a {
+        .brand-owner .btn-group a, #editPost a{
           color: red;
           cursor: pointer;
         }
