@@ -24,13 +24,14 @@
               {{/if}}
               <li class="active"><a href="/about">About Us</a></li>
               <li class="active"><a href="#">Contact Us</a></li>
-              <li class="active search">Search &nbsp;<input type="text" placeholder="">
+              <!-- <li class="active search">Search &nbsp;<input type="text" placeholder="">
               {{#if results}}
                 {{#each searchResults results}}
                   {{results.brand}}
                 {{/each}}
               {{/if}}
-            </li>
+            </li> -->
+            {{> searchBox}}
           </ul>
           <ul class="nav navbar-nav navbar-right">
               {{> loginButtons}} <!-- here -->
@@ -39,6 +40,16 @@
   </div>
   {{>Template.dynamic template=content}}  
   </body>
+</template>
+
+<template name="searchBox">
+    {{> EasySearch.Input index=citronIndex }}
+
+    <ul>
+        {{#EasySearch.Each index=citronIndex }}
+            <li>{{description}}</li>
+        {{/EasySearch.Each}}
+    </ul>
 </template>
 
 <template name="citronHome">

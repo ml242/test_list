@@ -1,4 +1,10 @@
 Posts = new Mongo.Collection("posts");
+	
+CitronIndex = new EasySearch.Index({	
+  collection: Posts,
+  fields: ['name', 'description'],
+  engine: new EasySearch.Minimongo()
+});
 
 
 
@@ -18,17 +24,24 @@ if (Meteor.isClient) {
 		}
 	});
 
-	Template.mainLayout.events({
-		"keyup li.search input": function(event){
-			var searchString = $('li.search input').val();
-			var cursor = Posts.find({ description: searchString });
-		}
-	});
+	// Template.mainLayout.events({
+	// 	"keyup li.search input": function(event){
+	// 		var searchString = $('li.search input').val();
+	// 		var cursor = Posts.find({ description: searchString });
+	// 	}
+	// });
 
-	Template.mainLayout.helpers({
-		searchResults: function(){
-			return results = Posts.find({brand: results}).fetch();
-		}
+	// Template.mainLayout.helpers({
+	// 	searchResults: function(){
+	// 		return results = Posts.find({brand: results}).fetch();
+	// 	}
+	// });
+
+	// On Client
+	Template.searchBox.helpers({
+	  citronIndex: function(){
+	  	return CitronIndex;
+	  }
 	});
 
 	Template.citronHome.events({
