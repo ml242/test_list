@@ -43,12 +43,16 @@
 </template>
 
 <template name="searchBox">
-    {{> EasySearch.Input index=citronIndex }}
+    {{> EasySearch.Input index=citronIndex attributes=inputAttributes }}
 
     <ul>
         {{#EasySearch.Each index=citronIndex }}
-            <li>{{description}}</li>
+          <li><a href="/citron/{{_id}}">{{description}}</a></li>
         {{/EasySearch.Each}}
+
+        {{#EasySearch.IfNoResults index=citronIndex}}
+          <div class="no-results">No results found!</div>
+        {{/EasySearch.IfNoResults}}
     </ul>
 </template>
 
