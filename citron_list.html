@@ -24,14 +24,9 @@
               {{/if}}
               <li class="active"><a href="/about">About Us</a></li>
               <li class="active"><a href="#">Contact Us</a></li>
-              <!-- <li class="active search">Search &nbsp;<input type="text" placeholder="">
-              {{#if results}}
-                {{#each searchResults results}}
-                  {{results.brand}}
-                {{/each}}
-              {{/if}}
-            </li> -->
-            {{> searchBox}}
+              <li class="active search">
+                {{> searchBox}}
+              </li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
               {{> loginButtons}} <!-- here -->
@@ -44,15 +39,13 @@
 
 <template name="searchBox">
     {{> EasySearch.Input index=citronIndex attributes=inputAttributes }}
-
     <ul>
-        {{#EasySearch.Each index=citronIndex }}
-          <li><a href="/citron/{{_id}}">{{description}}</a></li>
-        {{/EasySearch.Each}}
-
-        {{#EasySearch.IfNoResults index=citronIndex}}
-          <div class="no-results">No results found!</div>
-        {{/EasySearch.IfNoResults}}
+        {{#EasySearch.IfInputEmpty index=citronIndex}}
+        {{else}}
+          {{#EasySearch.Each index=citronIndex }}
+            <li><a href="/citron/{{_id}}">{{description}}</a></li>
+          {{/EasySearch.Each}}
+        {{/EasySearch.IfInputEmpty}}
     </ul>
 </template>
 
