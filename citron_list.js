@@ -2,7 +2,7 @@ Posts = new Mongo.Collection("posts");
 	
 CitronIndex = new EasySearch.Index({	
   collection: Posts,
-  fields: ['description'],
+  fields: ['description', 'brand', 'model'],
   engine: new EasySearch.Minimongo()
 });
 
@@ -40,10 +40,8 @@ if (Meteor.isClient) {
 	// On Client
 	Template.searchBox.helpers({
 	  citronIndex: function(){
+	  	console.log('index: ' + CitronIndex)
 	  	return CitronIndex;
-	  },
-	  showLinks: function(){
-	  	debugger;
 	  },
 	  inputAttributes: function () {
       return { 'class': 'search-input', 'placeholder': 'Start searching...' };

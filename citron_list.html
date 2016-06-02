@@ -43,7 +43,7 @@
         {{#EasySearch.IfInputEmpty index=citronIndex}}
         {{else}}
           {{#EasySearch.Each index=citronIndex }}
-            <li><a href="/citron/{{_id}}">{{description}}</a></li>
+            <li><a href="/citron/{{_id}}">{{brand}} {{project}} {{description}}</a></li>
           {{/EasySearch.Each}}
         {{/EasySearch.IfInputEmpty}}
     </ul>
