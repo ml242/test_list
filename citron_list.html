@@ -160,24 +160,29 @@
             <form class="js-add-report-form">
                 {{#each productInfo citron}}
                   <div class="form-group">
-                    <label for="brand">Brand</label>
-                        <p>{{brand}}</p>
+                    <label for="brand">Brand: {{brand}}</label>
                   </div>
                   <div class="form-group">
-                    <label for="mode">Model</label>
-                    <p>{{model}}</p>
+                    <label for="mode">Model: {{model}}</label>
                   </div>
                   <div class="form-group">
-                    <label for="description">Description</label>
-                    <p>{{description}}</p>
+                    <label for="description">Description: {{description}}</label>
                   </div>
                   <div class="form-group">
-                    <label for="checkbox">Yes, this happened to me as well. Let's make Citronade and warn the people.</label>
-                    <input type="checkbox" class="add-report-affirmative">
+                    <label for="textarea">Your comments count!</label>
+                     <input type="textarea" class="form-control" id="comments" placeholder="Go ahead, let it all out">
                   </div>
                   <div class="form-group">
-                    <label for="checkbox">I would like to be notified about an upcoming class action lawsuit (not mandatory)</label>
-                    <input type="checkbox" class="add-report-lawsuit">
+                    
+
+                    <label for="checkbox"><input type="checkbox" class="add-report-affirmative"> Yes, this happened to me as well. Let's make Citronade and warn the people.</label>
+                    
+                  </div>          
+                  <div class="form-group">
+                    
+
+                    <label for="checkbox"> <input type="checkbox" class="add-report-lawsuit"> I would like to be notified about an upcoming class action lawsuit (not mandatory)</label>
+                    
                   </div>
                 {{/each}}
 
@@ -255,6 +260,8 @@
                         <a id="js-list-reporting-users" data-attr={{_id}}>{{witnessCount}}</a>
                       </h4>
                     {{/if}}
+
+                    {{>shareit}}
 
                   </span>
 

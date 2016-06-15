@@ -24,6 +24,7 @@ if (Meteor.isClient) {
 		}
 	});
 
+
 	// Template.mainLayout.events({
 	// 	"keyup li.search input": function(event){
 	// 		var searchString = $('li.search input').val();
@@ -40,7 +41,6 @@ if (Meteor.isClient) {
 	// On Client
 	Template.searchBox.helpers({
 	  citronIndex: function(){
-	  	console.log('index: ' + CitronIndex)
 	  	return CitronIndex;
 	  },
 	  inputAttributes: function () {
@@ -86,6 +86,7 @@ if (Meteor.isClient) {
 	Template.posts_list.events({
 		"click #editPost": function(){
 			Modal.show('editPostModal', this._id);
+			autosize($('input[type=textarea]'));
 		},
 	'click #js-list-reporting-users'() {
   		Modal.show('listReportingUsers', this._id);
