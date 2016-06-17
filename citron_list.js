@@ -262,28 +262,32 @@ Template.form.events({
 			var description = event.target.description.value;
 			var model = event.target.model.value;
 			var ownerId = Meteor.user()._id;
+			var category = event.target.category.value;
+			debugger;
 			console.log(ownerId)
 			
 			//  put your new brand complaint here!
 
-			if (brand.length > 0 && model.length > 0 && description.length > 0 ) {
+			if (brand.length > 0 && model.length > 0 && description.length > 0 && category.length > 0) {
+			
 				Posts.insert({
-					
+					category: category,
 					brand: brand,
 					model: model,
 					description: description,
 					createdOn:new Date(),
 					witnessCount: 0,
 					ownerId: ownerId
-
 				});
+			
 				$('#error').text('')
 				$("#website_form").toggle('slow');
+				$('.js-toggle-website-form').toggle();
+				$('#js-cancel-button').toggleClass('collapse');
 			} else {
 				$('#error').text('All fields must be filled out');
 			}
-			$('.js-toggle-website-form').toggle();
-			$('#js-cancel-button').toggleClass('collapse');
+
 			
 			return false;// stop the form submit from reloading the page
 		}
@@ -324,6 +328,7 @@ if (Meteor.isServer) {
     	  Posts.insert({
     		brand:"Apple", 
     		model: "Apple iPhone 6s",
+    		category: "electronics",
     		url:"http://www.apple.com", 
     		description:"These screens are made of paper.",
     		_id: "1",
@@ -336,6 +341,7 @@ if (Meteor.isServer) {
     	 Posts.insert({
     	 	brand:"VW",
     		model:"Golf TDI", 
+    		category: "automotive",
     		url:"http://www.vw.com", 
     		_id: "2",
     		ownerId: "1",
@@ -347,6 +353,7 @@ if (Meteor.isServer) {
     	 Posts.insert({
     	 	brand:"Honda",
     		model:"Odyssey", 
+    		category: "automotive",
     		url:"http://www.honda.com", 
     		_id: "3",
     		ownerId: "2",

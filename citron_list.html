@@ -113,7 +113,25 @@
           <label for="mode">Model</label>
           <input type="text" class="form-control" id="model" placeholder="The Product's Model">
         </div>
-          <div class="form-group">
+
+        <div class="form-group">
+          <label for="select">Category</label>
+          <select class="form-control" id="category">
+            <option value="auto">Automotive</option>
+            <option value="electronics">Electronics</option>
+            <option value="furniture">Furniture</option>
+            <option value="public-serv">Public Services</option>
+            <option value="transport">Transportation</option>
+            <option value="food">Food and Beverage</option>
+            <option value="communication">Communication</option>
+            <option value="clothing">Clothing</option>
+            <option value="accessories">Accessories</option>
+            <option value="other">Other Category</option>
+          </select>          
+        </div>  
+
+
+        <div class="form-group">
           <label for="description">Description</label>
           <input type="text" class="form-control" id="description" placeholder="Here's where it gets really bad">
         </div>
@@ -168,16 +186,23 @@
                   <div class="form-group">
                     <label for="description">Description: {{description}}</label>
                   </div>
+
+
                   <div class="form-group">
                     <label for="textarea">Your comments count!</label>
                      <input type="textarea" class="form-control" id="comments" placeholder="Go ahead, let it all out">
                   </div>
+
+
+
+
                   <div class="form-group">
                     
 
                     <label for="checkbox"><input type="checkbox" class="add-report-affirmative"> Yes, this happened to me as well. Let's make Citronade and warn the people.</label>
                     
-                  </div>          
+                  </div>  
+
                   <div class="form-group">
                     
 
