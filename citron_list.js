@@ -6,6 +6,8 @@ CitronIndex = new EasySearch.Index({
   engine: new EasySearch.Minimongo()
 });
 
+var urlHome = Meteor.absoluteUrl();
+
 
 
 if (Meteor.isClient) {
@@ -35,28 +37,23 @@ if (Meteor.isClient) {
     iconOnly: true,      // boolean (default: false)          
     faSize: 'large',            // font awesome size
     faClass: 'square',       // font awesome classes like square,
-    useFB: true,          // boolean (default: true)
-	  useTwitter: true,     // boolean (default: true)
-	  usePinterest: false,
-	  useGoogle: false,
-	  classes: "large btn", // string (default: 'large btn')
+	  classes: "large btn larg-btn", // string (default: 'large btn')
 	  iconOnly: true,       // boolean (default: false)
 	  applyColors: false     // boolean (default: true)
   });
 
 
-	// Template.mainLayout.events({
-	// 	"keyup li.search input": function(event){
-	// 		var searchString = $('li.search input').val();
-	// 		var cursor = Posts.find({ description: searchString });
-	// 	}
-	// });
-
-	// Template.mainLayout.helpers({
-	// 	searchResults: function(){
-	// 		return results = Posts.find({brand: results}).fetch();
-	// 	}
-	// });
+	Template.mainLayout.helpers({
+		appId: function(){
+			if (urlHome == 'http://localhost:3000/') {
+				console.log('in da house')
+				return 1032542676825405
+			}
+			else {
+				return 1061722967240709
+			}
+		}
+	});
 
 	// On Client
 	Template.searchBox.helpers({
