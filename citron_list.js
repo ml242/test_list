@@ -30,17 +30,18 @@ if (Meteor.isClient) {
             'appId': 1032542676825405 // use sharer.php when it's null, otherwise use share dialog
         },
         'twitter': {},
-        'googleplus': {},
-        'pinterest': {}
+        'pinterist': false,
     },
-    classes: "large btn", // string (default: 'large btn')
-                          // The classes that will be placed on the sharing buttons, bootstrap by default.
-    iconOnly: true,      // boolean (default: false)
-                          // Don't put text on the sharing buttons
-    applyColors: true,     // boolean (default: true)
-                          // apply classes to inherit each social networks background color
-    faSize: '',            // font awesome size
-    faClass: ''       // font awesome classes like square
+    iconOnly: true,      // boolean (default: false)          
+    faSize: 'large',            // font awesome size
+    faClass: 'square',       // font awesome classes like square,
+    useFB: true,          // boolean (default: true)
+	  useTwitter: true,     // boolean (default: true)
+	  usePinterest: false,
+	  useGoogle: false,
+	  classes: "large btn", // string (default: 'large btn')
+	  iconOnly: true,       // boolean (default: false)
+	  applyColors: false     // boolean (default: true)
   });
 
 
@@ -129,6 +130,13 @@ Template.posts_list.helpers({
   },
   witnessCountGreaterThanZero: function(){
   	return this.witnessCount > 0 ? true : false;
+  },
+  shareData: function() {
+    return { 
+    	title: this.description,
+    	author: Meteor.users.find({_id: this.ownerId}).fetch()[0].username,
+    	url: "http://localhost:3000/" + this._id,
+		}
   }
 });
 

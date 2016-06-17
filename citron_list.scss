@@ -155,6 +155,9 @@ section.brand {
   .share-buttons-container {
     margin: 1em;
   }
+  a.pinterest-share, a.googleplus-share {
+    display: none;
+  }
 }
 
 $colors-list: #00CA8D #E3FFA7 #E3FFA7 #444444 #4444FF;
