@@ -2,7 +2,7 @@ Posts = new Mongo.Collection("posts");
 	
 CitronIndex = new EasySearch.Index({	
   collection: Posts,
-  fields: ['description', 'brand', 'model'],
+  fields: ['description', 'brand', 'model', "category"],
   engine: new EasySearch.Minimongo()
 });
 
@@ -322,6 +322,8 @@ Template.form.events({
 if (Meteor.isServer) {
   Meteor.startup(function () {
     // code to run on server at startup
+
+    Posts.remove({});
 
     if (!Posts.findOne()){
     	console.log("No posts yet. Creating starter data.");
