@@ -37,10 +37,11 @@
 
   <script>
 
+
   if window.url
   window.fbAsyncInit = function() {
     FB.init({
-      appId      : {{appId}},
+      appId      : appId(),
       xfbml      : true,
       version    : 'v2.6'
     });

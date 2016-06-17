@@ -7,10 +7,22 @@ CitronIndex = new EasySearch.Index({
 });
 
 var urlHome = Meteor.absoluteUrl();
+var appId = function(){
+
+			if (urlHome == 'http://localhost:3000/') {
+				return 1032542676825405
+			} else {
+				return 1061722967240709
+			}
+
+}
 
 
 
 if (Meteor.isClient) {
+
+	console.log("urlHome in client izzzz" + urlHome)
+
 
 	if (!Array.prototype.last){
     Array.prototype.last = function(){
@@ -27,9 +39,11 @@ if (Meteor.isClient) {
 	});
 
   ShareIt.configure({
+
+
     sites: {                // nested object for extra configurations
         'facebook': {
-            'appId': 1032542676825405 // use sharer.php when it's null, otherwise use share dialog
+            'appId': appId() // use sharer.php when it's null, otherwise use share dialog
         },
         'twitter': {},
         'pinterist': false,
@@ -44,15 +58,6 @@ if (Meteor.isClient) {
 
 
 	Template.mainLayout.helpers({
-		appId: function(){
-			if (urlHome == 'http://localhost:3000/') {
-				console.log('in da house')
-				return 1032542676825405
-			}
-			else {
-				return 1061722967240709
-			}
-		}
 	});
 
 	// On Client
