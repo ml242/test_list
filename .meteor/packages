@@ -19,8 +19,8 @@ autopublish             # Publish all data to the clients (for prototyping)
 insecure                # Allow all DB writes from clients (for prototyping)
 zal3wa:bootstrap-flatly
 accounts-password
-accounts-facebook
-accounts-google
+# accounts-facebook
+# accounts-google
 standard-minifier-js
 # accounts-ui-unstyled
 ian:accounts-ui-bootstrap-3
