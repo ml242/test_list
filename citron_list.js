@@ -17,6 +17,7 @@ var appId = function(){
 
 
 
+
 if (Meteor.isClient) {
 
 
@@ -98,6 +99,13 @@ if (Meteor.isClient) {
 	});
 
 	Accounts.ui.config({
+  requestPermissions: {
+    facebook: ['user_likes', 'publish_actions', 'email', 'user_friends', 'public_profile'],
+    github: ['user', 'repo']
+  },
+  requestOfflineToken: {
+    google: true
+  },
 		passwordSignupFields: "USERNAME_AND_EMAIL"
 	});
 
@@ -140,7 +148,8 @@ Template.posts_list.helpers({
     	title: this.description,
     	description: this.description,
     	author: Meteor.users.find({_id: this.ownerId}).fetch()[0].username,
-    	url: "http://localhost:3000/" + this._id,
+    	url: "https://localhost:3000"
+    	// redirect_uri: " https://www.facebook.com/connect/login_success.html"
 		}
   }
 });
