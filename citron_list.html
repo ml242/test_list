@@ -35,30 +35,36 @@
   </div>
   {{>Template.dynamic template=content}}  
 
-  <script>
-
-  // console.log("izzzz   " + {{fbId}})
-
-  // var myApp = {{fbId}}
-
-  // window.fbAsyncInit = function() {
-  //   FB.init({
-  //     appId      : myApp,
-  //     xfbml      : true,
-  //     version    : 'v2.6'
-  //   });
-  // };
-
-  // (function(d, s, id){
-  //    var js, fjs = d.getElementsByTagName(s)[0];
-  //    if (d.getElementById(id)) {return;}
-  //    js = d.createElement(s); js.id = id;
-  //    js.src = "//connect.facebook.net/en_US/sdk.js";
-  //    fjs.parentNode.insertBefore(js, fjs);
-  //  }(document, 'script', 'facebook-jssdk'));
 
 
-</script>
+
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '248093175573193',
+          xfbml      : true,
+          version    : 'v2.6'
+        });
+      };
+
+        (function(d, s, id){
+           var js, fjs = d.getElementsByTagName(s)[0];
+           if (d.getElementById(id)) {return;}
+           js = d.createElement(s); js.id = id;
+           js.src = "//connect.facebook.net/en_US/sdk.js";
+           fjs.parentNode.insertBefore(js, fjs);
+         }(document, 'script', 'facebook-jssdk'));
+    
+         window.onload = function(){
+          document.getElementByClassName('shareBtn').onclick = function() {
+            FB.ui({
+              method: 'share',
+              display: 'popup',
+              href: 'https://localhost:3000/',
+            }, function(response){});
+          }
+        };
+     </script>
 
 
   </body>
@@ -322,7 +328,15 @@
         </ul>
         <div class="row">
           <div class="col-md-4 share-buttons-container">          
-            {{>shareit shareData}}            
+           <!--  {{>shareit shareData}}   -->          
+
+
+          <div class="shareBtn btn btn-success clearfix">Share</div>
+
+      
+
+
+
           </div>
         </div>
       </section>

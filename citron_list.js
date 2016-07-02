@@ -100,7 +100,7 @@ if (Meteor.isClient) {
 
 	Accounts.ui.config({
   requestPermissions: {
-    facebook: ['user_likes', 'publish_actions', 'email', 'user_friends', 'public_profile'],
+    facebook: ['user_likes', 'email', 'public_profile'],
     github: ['user', 'repo']
   },
   requestOfflineToken: {
@@ -142,16 +142,16 @@ Template.posts_list.helpers({
   witnessCountGreaterThanZero: function(){
   	return this.witnessCount > 0 ? true : false;
   },
-  shareData: function() {
+  // shareData: function() {
   	
-    return { 
-    	title: this.description,
-    	description: this.description,
-    	author: Meteor.users.find({_id: this.ownerId}).fetch()[0].username,
-    	url: "https://localhost:3000"
-    	// redirect_uri: " https://www.facebook.com/connect/login_success.html"
-		}
-  }
+  //   return { 
+  //   	title: this.description,
+  //   	description: this.description,
+  //   	author: Meteor.user().username || Meteor.user().profile.name,
+  //   	// url: "https://localhost:3000"
+  //   	// redirect_uri: " https://www.facebook.com/connect/login_success.html"
+		// }
+  // }
 });
 
 Template.userDetailsModal.helpers({
